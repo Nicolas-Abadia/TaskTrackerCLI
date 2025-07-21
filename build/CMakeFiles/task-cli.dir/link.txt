@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/task-cli.dir/task-cli.cpp.o -o task-cli 
+/usr/bin/c++ -g CMakeFiles/task-cli.dir/task-cli.cpp.o -o task-cli 

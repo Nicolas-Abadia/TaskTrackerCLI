@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/workspaces/cpp_projects/TaskTrackerCLI/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/task-cli.dir/task-cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp",
+  "file": "/workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp"
+}
+]

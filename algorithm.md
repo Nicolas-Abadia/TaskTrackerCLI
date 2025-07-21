@@ -41,3 +41,4 @@ User inputs wrong action
 User inputs a task desc that already exists
 User inputs wrong argument
 User marks status to the same current status (should work normally)
+Case if the user does not add "" to the task description
