@@ -5,7 +5,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${fileDirname}/${fileBasenameNoExtension}",
-      "args": ["update", "1", "Waffles"],
+      "args": ["add", "Waffles"],
       "stopAtEntry": false,
       "cwd": "${fileDirname}",
       "environment": [],

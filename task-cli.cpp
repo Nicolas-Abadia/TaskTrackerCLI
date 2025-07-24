@@ -17,29 +17,10 @@
  **/
 
 
-// Returns the number of existing tasks
-int num_task(){
-  int count = 0;
-  int task_id = 1; 
-  std::string filename = std::to_string(task_id) + ".json";
-  
-  // Count existing task files
-  while (std::filesystem::exists(filename))
-  {
-    count++;
-    task_id++;
-    filename = std::to_string(task_id) + ".json";  
-  }
-  
-  return count;
-}
-
-
-void task_add(char const *argv[]){
+void task_add(char const *argv[], int next_id){
   auto desc = argv[2];
     
-    int num = num_task() + 1;
-    
+    int num = next_id;
     std::string filename = std::to_string(num) + ".json"; 
     std::ofstream json(filename);
 
@@ -64,8 +45,10 @@ void task_add(char const *argv[]){
 
 }
 
-void task_list(char const *argv[]) {
-  int total_tasks = num_task(); // Get the actual number of existing tasks
+void task_list(char const *argv[], int num_tasks) {
+  // Get the actual number of existing tasks
+  int total_tasks = num_tasks;
+  
   bool found_any = false;
   
   std::cout << "Tasks:\n";
@@ -244,18 +227,68 @@ void task_delete(char const *argv[]) {
 }
 
 void task_print(char const* argv[]) {
+  // DIRECTORY ITERATOR
   for (const auto& entry : std::filesystem::directory_iterator(".")) {
     std::string path = entry.path(); 
-    if (path.ends_with(".json"))
-    {
-      
-      std::cout << path << std::endl;
-    }   
+    // Step 1: Remove .json
+    std::string without_json = path.substr(0, path.find(".json"));
+
+    // Step 2: Get filename only
+    size_t last_slash = without_json.rfind("/");
+    std::string filename = (last_slash != std::string::npos) ? 
+                          without_json.substr(last_slash + 1) : without_json;
+
+    // Step 3: Check if all characters are digits
+    bool is_number = true;
+    for (char c : filename) {
+        if (!std::isdigit(c)) {
+            is_number = false;
+            break;
+        }
+    }
+    if (is_number) std::cout << entry.path() << std::endl;
+    
   }
+}
+
+
+void directory_iterator(int& num_tasks, int& next_id){
+  int id = 0;
+  int greatest_id = 0;
+  for (const auto& entry : std::filesystem::directory_iterator(".")) {
+    std::string path = entry.path(); 
+    // Step 1: Remove .json
+    std::string without_json = path.substr(0, path.find(".json"));
+
+    // Step 2: Get filename only
+    size_t last_slash = without_json.rfind("/");
+    std::string filename = (last_slash != std::string::npos) ? 
+                          without_json.substr(last_slash + 1) : without_json;
+
+    // Step 3: Check if all characters are digits
+    bool is_number = true;
+    for (char c : filename) {
+        if (!std::isdigit(c)) {
+            is_number = false;
+            break;
+        }
+    }
+    
+    if (is_number){
+      id = std::stoi(filename);
+      if (id > greatest_id) {
+      greatest_id = id;
+      } 
+      num_tasks++;
+    }
+  }
+  next_id = greatest_id + 1; 
 }
 
 int main(int argc, char const *argv[]) {
   int num_tasks = 0;
+  int next_id = 0;
+  directory_iterator(num_tasks, next_id);
   std::cout << "CLI Task Tracker\n";
   if (argc < 2) {
     std::cout << "Usage: task-cli <command>\n";
@@ -269,12 +302,12 @@ int main(int argc, char const *argv[]) {
       std::cout << "Usage: task-cli add \"task description\"\n";
       return 1;
     }
-    task_add(argv);
+    task_add(argv, next_id);
   } 
 
   // LISTING COMMAND
   if (std::string(argv[1])== "list"){
-    task_list(argv);
+    task_list(argv, num_tasks);
   }
 
   // UPDATE COMMAND
