@@ -28,7 +28,7 @@ int num_task(){
   {
     count++;
     task_id++;
-    filename = std::to_string(task_id) + ".json"; 
+    filename = std::to_string(task_id) + ".json";  
   }
   
   return count;
@@ -37,13 +37,10 @@ int num_task(){
 
 void task_add(char const *argv[]){
   auto desc = argv[2];
-    // Write json file
-    // I have a problem. how do i know the id of the task i am adding every time i run the program?
-    // it should be based on the previous tasks added or the json files that were created. but how do i get this info?
-    // maybe i should loop over the files? 
+    
     int num = num_task() + 1;
     
-    std::string filename = std::to_string(num) + ".json";
+    std::string filename = std::to_string(num) + ".json"; 
     std::ofstream json(filename);
 
     if (!json) {
@@ -134,9 +131,10 @@ void task_list(char const *argv[]) {
 
 void task_update(char const *argv[]) {
   std::string id = argv[2];
-  std::string new_description = argv[3]; // Fixed: should be argv[3], not argv[4]
-  std::string filename = id + ".json";
+  std::string new_description = argv[3]; 
+  std::string filename = id + ".json"; 
   
+  // Error Handling
   if (!std::filesystem::exists(filename)) {
     std::cout << "Task with ID " << id << " not found.\n";
     return;
@@ -145,7 +143,7 @@ void task_update(char const *argv[]) {
   
   std::ifstream task_file(filename);
 
-
+  // Error Handling
   if (!task_file.is_open()) {
     std::cout << "Error: Could not open task file.\n";
     return;
@@ -162,21 +160,40 @@ void task_update(char const *argv[]) {
   task_file.close();
   
   // Find and replace the description
-  size_t desc_pos = content.find("\"description\":");
+  // Searches for the literal string ["description":] in the JSON content
+  // content.find() returns the starting position of the string
+  size_t desc_pos = content.find("\"description\":"); // position of the word description
   if (desc_pos == std::string::npos) {
-    std::cout << "Error: Could not find description field in task file.\n";
+    std::cout << "Error: Could not find description field in task file.\n"; // this could happen if the json file is corrupted or malformed.
     return;
   }
   
+  /*
+    find the opening quote ["] after de starting position of the string ["description":]
+    desp_pos + 14: skips past ["description":] (14 characters)
+    + 1: Moves to the character after the opening quote (start of actual description text)
+  */
   size_t desc_start = content.find("\"", desc_pos + 14) + 1;
+  /*
+    Searches for the closing quote starting from desc_start
+    This finds the end of the description text (before the closing quote)
+  */
   size_t desc_end = content.find("\"", desc_start);
   
+
+  // This npos error checking would never fail for desc start since it always adds 1 to the desc_start variable
+  // should correct this
   if (desc_start == std::string::npos || desc_end == std::string::npos) {
     std::cout << "Error: Malformed JSON in task file.\n";
     return;
   }
   
   // Replace the description
+  /*
+    desc_start: Starting position of replacement
+    desc_end - desc_start: Length of text to replace
+    new_description: The new text to insert 
+  */
   content.replace(desc_start, desc_end - desc_start, new_description);
   
   // Update the updatedAt timestamp
@@ -207,6 +224,35 @@ void task_update(char const *argv[]) {
   std::cout << "Task " << id << " updated successfully!\n";
 }
 
+
+void task_delete(char const *argv[]) {
+
+  std::string id = argv[2];
+  std::string filename = id + ".json"; 
+
+  if (!std::filesystem::exists(filename)) {
+    std::cout << "Task with ID " << id << " not found.\n";
+    return;
+  }
+
+  if (!std::filesystem::remove(filename)) {
+    std::cout << "Task was not deleted\n";
+    return;
+  }
+  std::cout << "Task " << id << " deleted successfully!\n";
+
+}
+
+void task_print(char const* argv[]) {
+  for (const auto& entry : std::filesystem::directory_iterator(".")) {
+    std::string path = entry.path(); 
+    if (path.ends_with(".json"))
+    {
+      
+      std::cout << path << std::endl;
+    }   
+  }
+}
 
 int main(int argc, char const *argv[]) {
   int num_tasks = 0;
@@ -242,6 +288,28 @@ int main(int argc, char const *argv[]) {
   }
 
   // DELETE COMMAND
+
+  if (std::string(argv[1]) == "delete")
+  {
+    if (argc != 3) {
+      std::cout << "Usage: task-cli delete <task_id>\n";
+      return 1;
+    }
+    task_delete(argv);
+  }
+  
+  // PRINT JSON
+
+  if (std::string(argv[1]) == "print")
+  {
+    if (argc != 2) {
+      std::cout << "Usage: task-cli print\n";
+      return 1;
+    }
+    task_print(argv);
+  }
+
+  // UPDATE WITH FILTERS
 
   
   return 0;
