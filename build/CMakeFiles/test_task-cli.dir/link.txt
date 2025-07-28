@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/test_task-cli.dir/test_task-cli.cpp.o -o test_task-cli  libtask_lib.a /usr/local/lib/libgtest.a 

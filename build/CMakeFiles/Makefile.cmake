@@ -7,6 +7,12 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+  "/usr/local/lib/cmake/GTest/GMockTargets-noconfig.cmake"
+  "/usr/local/lib/cmake/GTest/GMockTargets.cmake"
+  "/usr/local/lib/cmake/GTest/GTestConfig.cmake"
+  "/usr/local/lib/cmake/GTest/GTestConfigVersion.cmake"
+  "/usr/local/lib/cmake/GTest/GTestTargets-noconfig.cmake"
+  "/usr/local/lib/cmake/GTest/GTestTargets.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeCCompiler.cmake.in"
   "/usr/share/cmake-3.22/Modules/CMakeCCompilerABI.c"
   "/usr/share/cmake-3.22/Modules/CMakeCInformation.cmake"
@@ -23,6 +29,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/CMakeDetermineCompilerId.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeDetermineSystem.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeFindBinUtils.cmake"
+  "/usr/share/cmake-3.22/Modules/CMakeFindDependencyMacro.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake"
@@ -36,6 +43,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/CMakeTestCXXCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeTestCompilerCommon.cmake"
   "/usr/share/cmake-3.22/Modules/CMakeUnixFindMake.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckCSourceCompiles.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckIncludeFile.c.in"
+  "/usr/share/cmake-3.22/Modules/CheckIncludeFile.cmake"
+  "/usr/share/cmake-3.22/Modules/CheckLibraryExists.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/ADSP-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/ARMCC-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/ARMClang-DetermineCompiler.cmake"
@@ -87,6 +98,12 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.22/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/zOS-C-DetermineCompiler.cmake"
   "/usr/share/cmake-3.22/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake"
+  "/usr/share/cmake-3.22/Modules/FindGTest.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageHandleStandardArgs.cmake"
+  "/usr/share/cmake-3.22/Modules/FindPackageMessage.cmake"
+  "/usr/share/cmake-3.22/Modules/FindThreads.cmake"
+  "/usr/share/cmake-3.22/Modules/GoogleTest.cmake"
+  "/usr/share/cmake-3.22/Modules/Internal/CheckSourceCompiles.cmake"
   "/usr/share/cmake-3.22/Modules/Internal/FeatureTesting.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-Determine-CXX.cmake"
   "/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake"
@@ -119,4 +136,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/task-cli.dir/DependInfo.cmake"
+  "CMakeFiles/task_lib.dir/DependInfo.cmake"
+  "CMakeFiles/test_task-cli.dir/DependInfo.cmake"
   )

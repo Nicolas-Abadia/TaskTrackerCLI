@@ -1,0 +1,5 @@
+if(EXISTS "/workspaces/cpp_projects/TaskTrackerCLI/build/test_task-cli[1]_tests.cmake")
+  include("/workspaces/cpp_projects/TaskTrackerCLI/build/test_task-cli[1]_tests.cmake")
+else()
+  add_test(test_task-cli_NOT_BUILT test_task-cli_NOT_BUILT)
+endif()

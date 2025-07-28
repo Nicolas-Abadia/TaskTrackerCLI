@@ -1,3 +1,8 @@
+/*
+  Task Tracker CLI Application
+  First C++ Project 
+*/
+
 #include <iostream>
 #include <fstream>
 #include <chrono>
@@ -45,10 +50,12 @@ void task_add(char const *argv[], int next_id){
 
 }
 
+
+// task_list always loops over all the tasks despite if it receives the argument to only show tasks of a particular status. This is a problem I would need to solve later.
 void task_list(char const *argv[], int num_tasks) {
   // Get the actual number of existing tasks
   int total_tasks = num_tasks;
-  
+  std::string filter = argv[2] != nullptr ? argv[2] : "all";
   bool found_any = false;
   
   std::cout << "Tasks:\n";
@@ -104,7 +111,24 @@ void task_list(char const *argv[], int num_tasks) {
             status = content.substr(status_start, status_end - status_start);
           }
           
-          std::cout << "ID: " << id << " | Status: " << status << " | Description: " << description << std::endl;
+          if (filter == "all")
+          {
+            std::cout << "ID: " << id << " | Status: " << status << " | Description: " << description << std::endl;
+          } else if (filter == "todo") {
+            if (status == "todo") {
+              std::cout << "ID: " << id << " | Status: " << status << " | Description: " << description << std::endl;
+            }
+          } else if (filter == "in-progress") {
+            if (status == "in-progress") {
+              std::cout << "ID: " << id << " | Status: " << status << " | Description: " << description << std::endl;
+            }
+          } else if (filter == "done") {
+            if (status == "done") {
+              std::cout << "ID: " << id << " | Status: " << status << " | Description: " << description << std::endl;
+            }
+          }
+          
+          
           found_any = true;
         }
       }
@@ -285,6 +309,290 @@ void directory_iterator(int& num_tasks, int& next_id){
   next_id = greatest_id + 1; 
 }
 
+
+void task_mark_in_progress(char const *argv[]) {
+  std::string id = argv[2];
+  std::string filename = id + ".json"; 
+  
+  // Error Handling
+  if (!std::filesystem::exists(filename)) {
+    std::cout << "Task with ID " << id << " not found.\n";
+    return;
+  }
+
+  
+  std::ifstream task_file(filename);
+
+  // Error Handling
+  if (!task_file.is_open()) {
+    std::cout << "Error: Could not open task file.\n";
+    return;
+  }
+  
+  std::string line;
+  std::string content;
+
+  
+  // Read the entire file content
+  while (std::getline(task_file, line)) {
+    content += line + "\n"; // Preserve line breaks
+  }
+  task_file.close();
+  
+  // Find and replace the status
+  // Searches for the literal string ["status":] in the JSON content
+  // content.find() returns the starting position of the string
+  size_t sts_pos = content.find("\"status\":"); // position of the word description
+  if (sts_pos == std::string::npos) {
+    std::cout << "Error: Could not find status field in task file.\n"; // this could happen if the json file is corrupted or malformed.
+    return;
+  }
+  
+  /*
+    find the opening quote ["] after de starting position of the string ["status":]
+    desp_pos + 9: skips past ["status":] (9 characters)
+    + 1: Moves to the character after the opening quote (start of actual status text)
+  */
+  size_t sts_start = content.find("\"", sts_pos + 9) + 1;
+  /*
+    Searches for the closing quote starting from desc_start
+    This finds the end of the description text (before the closing quote)
+  */
+  size_t sts_end = content.find("\"", sts_start);
+  
+
+  // This npos error checking would never fail for desc start since it always adds 1 to the desc_start variable
+  // should correct this
+  if (sts_start == std::string::npos || sts_end == std::string::npos) {
+    std::cout << "Error: Malformed JSON in task file.\n";
+    return;
+  }
+  
+  // Replace the description
+  /*
+    desc_start: Starting position of replacement
+    desc_end - desc_start: Length of text to replace
+    new_description: The new text to insert 
+  */
+  content.replace(sts_start, sts_end - sts_start, "in-progress");
+  
+  // Update the updatedAt timestamp
+  auto now = std::chrono::system_clock::now();
+  auto timestamp = std::chrono::system_clock::to_time_t(now);
+  std::string time = std::ctime(&timestamp);
+  time.pop_back(); // Remove newline
+  
+  size_t updated_pos = content.find("\"updatedAt\":");
+  if (updated_pos != std::string::npos) {
+    size_t updated_start = content.find("\"", updated_pos + 12) + 1;
+    size_t updated_end = content.find("\"", updated_start);
+    if (updated_start != std::string::npos && updated_end != std::string::npos) {
+      content.replace(updated_start, updated_end - updated_start, time);
+    }
+  }
+  
+  // Write the updated content back to the file
+  std::ofstream output_file(filename);
+  if (!output_file.is_open()) {
+    std::cout << "Error: Could not write to task file.\n";
+    return;
+  }
+  
+  output_file << content;
+  output_file.close();
+  
+  std::cout << "Task " << id << " updated successfully!\n";
+}
+
+void task_mark_done(char const *argv[]) {
+  std::string id = argv[2];
+  std::string filename = id + ".json"; 
+  
+  // Error Handling
+  if (!std::filesystem::exists(filename)) {
+    std::cout << "Task with ID " << id << " not found.\n";
+    return;
+  }
+
+  
+  std::ifstream task_file(filename);
+
+  // Error Handling
+  if (!task_file.is_open()) {
+    std::cout << "Error: Could not open task file.\n";
+    return;
+  }
+  
+  std::string line;
+  std::string content;
+
+  
+  // Read the entire file content
+  while (std::getline(task_file, line)) {
+    content += line + "\n"; // Preserve line breaks
+  }
+  task_file.close();
+  
+  // Find and replace the status
+  // Searches for the literal string ["status":] in the JSON content
+  // content.find() returns the starting position of the string
+  size_t sts_pos = content.find("\"status\":"); // position of the word description
+  if (sts_pos == std::string::npos) {
+    std::cout << "Error: Could not find status field in task file.\n"; // this could happen if the json file is corrupted or malformed.
+    return;
+  }
+  
+  /*
+    find the opening quote ["] after de starting position of the string ["status":]
+    desp_pos + 9: skips past ["status":] (9 characters)
+    + 1: Moves to the character after the opening quote (start of actual status text)
+  */
+  size_t sts_start = content.find("\"", sts_pos + 9) + 1;
+  /*
+    Searches for the closing quote starting from desc_start
+    This finds the end of the description text (before the closing quote)
+  */
+  size_t sts_end = content.find("\"", sts_start);
+  
+
+  // This npos error checking would never fail for desc start since it always adds 1 to the desc_start variable
+  // should correct this
+  if (sts_start == std::string::npos || sts_end == std::string::npos) {
+    std::cout << "Error: Malformed JSON in task file.\n";
+    return;
+  }
+  
+  // Replace the description
+  /*
+    desc_start: Starting position of replacement
+    desc_end - desc_start: Length of text to replace
+    new_description: The new text to insert 
+  */
+  content.replace(sts_start, sts_end - sts_start, "done");
+  
+  // Update the updatedAt timestamp
+  auto now = std::chrono::system_clock::now();
+  auto timestamp = std::chrono::system_clock::to_time_t(now);
+  std::string time = std::ctime(&timestamp);
+  time.pop_back(); // Remove newline
+  
+  size_t updated_pos = content.find("\"updatedAt\":");
+  if (updated_pos != std::string::npos) {
+    size_t updated_start = content.find("\"", updated_pos + 12) + 1;
+    size_t updated_end = content.find("\"", updated_start);
+    if (updated_start != std::string::npos && updated_end != std::string::npos) {
+      content.replace(updated_start, updated_end - updated_start, time);
+    }
+  }
+  
+  // Write the updated content back to the file
+  std::ofstream output_file(filename);
+  if (!output_file.is_open()) {
+    std::cout << "Error: Could not write to task file.\n";
+    return;
+  }
+  
+  output_file << content;
+  output_file.close();
+  
+  std::cout << "Task " << id << " updated successfully!\n";
+}
+
+void task_mark_todo(char const *argv[]) {
+  std::string id = argv[2];
+  std::string filename = id + ".json"; 
+  
+  // Error Handling
+  if (!std::filesystem::exists(filename)) {
+    std::cout << "Task with ID " << id << " not found.\n";
+    return;
+  }
+
+  
+  std::ifstream task_file(filename);
+
+  // Error Handling
+  if (!task_file.is_open()) {
+    std::cout << "Error: Could not open task file.\n";
+    return;
+  }
+  
+  std::string line;
+  std::string content;
+
+  
+  // Read the entire file content
+  while (std::getline(task_file, line)) {
+    content += line + "\n"; // Preserve line breaks
+  }
+  task_file.close();
+  
+  // Find and replace the status
+  // Searches for the literal string ["status":] in the JSON content
+  // content.find() returns the starting position of the string
+  size_t sts_pos = content.find("\"status\":"); // position of the word description
+  if (sts_pos == std::string::npos) {
+    std::cout << "Error: Could not find status field in task file.\n"; // this could happen if the json file is corrupted or malformed.
+    return;
+  }
+  
+  /*
+    find the opening quote ["] after de starting position of the string ["status":]
+    desp_pos + 9: skips past ["status":] (9 characters)
+    + 1: Moves to the character after the opening quote (start of actual status text)
+  */
+  size_t sts_start = content.find("\"", sts_pos + 9) + 1;
+  /*
+    Searches for the closing quote starting from desc_start
+    This finds the end of the description text (before the closing quote)
+  */
+  size_t sts_end = content.find("\"", sts_start);
+  
+
+  // This npos error checking would never fail for desc start since it always adds 1 to the desc_start variable
+  // should correct this
+  if (sts_start == std::string::npos || sts_end == std::string::npos) {
+    std::cout << "Error: Malformed JSON in task file.\n";
+    return;
+  }
+  
+  // Replace the description
+  /*
+    desc_start: Starting position of replacement
+    desc_end - desc_start: Length of text to replace
+    new_description: The new text to insert 
+  */
+  content.replace(sts_start, sts_end - sts_start, "todo");
+  
+  // Update the updatedAt timestamp
+  auto now = std::chrono::system_clock::now();
+  auto timestamp = std::chrono::system_clock::to_time_t(now);
+  std::string time = std::ctime(&timestamp);
+  time.pop_back(); // Remove newline
+  
+  size_t updated_pos = content.find("\"updatedAt\":");
+  if (updated_pos != std::string::npos) {
+    size_t updated_start = content.find("\"", updated_pos + 12) + 1;
+    size_t updated_end = content.find("\"", updated_start);
+    if (updated_start != std::string::npos && updated_end != std::string::npos) {
+      content.replace(updated_start, updated_end - updated_start, time);
+    }
+  }
+  
+  // Write the updated content back to the file
+  std::ofstream output_file(filename);
+  if (!output_file.is_open()) {
+    std::cout << "Error: Could not write to task file.\n";
+    return;
+  }
+  
+  output_file << content;
+  output_file.close();
+  
+  std::cout << "Task " << id << " updated successfully!\n";
+}
+
+#ifndef TESTING_BUILD
 int main(int argc, char const *argv[]) {
   int num_tasks = 0;
   int next_id = 0;
@@ -342,8 +650,41 @@ int main(int argc, char const *argv[]) {
     task_print(argv);
   }
 
-  // UPDATE WITH FILTERS
+  // MARK IN PROGRESS COMMAND
 
-  
+  if (std::string(argv[1]) == "mark-in-progress") {
+    if (argc != 3)  // argv[0]=program, argv[1]=update, argv[2]=id
+    {
+      std::cout << "Usage: task-cli mark-in-progress <task_id>\n";
+      return 1;
+    }
+    task_mark_in_progress(argv);
+  }
+
+  // MARK DONE COMMAND
+
+  if (std::string(argv[1]) == "mark-done") {
+    if (argc != 3)  // argv[0]=program, argv[1]=update, argv[2]=id
+    {
+      std::cout << "Usage: task-cli mark-done <task_id>\n";
+      return 1;
+    }
+    task_mark_done(argv);
+  }
+
+  // MARK TODO COMMAND
+
+  if (std::string(argv[1]) == "mark-todo") {
+    if (argc != 3)  // argv[0]=program, argv[1]=update, argv[2]=id
+    {
+      std::cout << "Usage: task-cli mark-todo <task_id>\n";
+      return 1;
+    }
+    task_mark_todo(argv);
+  }
+
+  // LISTING WITH FILTERS COMMAND
+
   return 0;
 }
+#endif

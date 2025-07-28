@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /workspaces/cpp_projects/TaskTrackerCLI/build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -129,12 +139,39 @@ task-cli/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/build
 .PHONY : task-cli/fast
 
+#=============================================================================
+# Target rules for targets named task_lib
+
+# Build rule for target.
+task_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 task_lib
+.PHONY : task_lib
+
+# fast build rule for target.
+task_lib/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/build
+.PHONY : task_lib/fast
+
+#=============================================================================
+# Target rules for targets named test_task-cli
+
+# Build rule for target.
+test_task-cli: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_task-cli
+.PHONY : test_task-cli
+
+# fast build rule for target.
+test_task-cli/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/build
+.PHONY : test_task-cli/fast
+
 task-cli.o: task-cli.cpp.o
 .PHONY : task-cli.o
 
 # target to build an object file
 task-cli.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.o
 .PHONY : task-cli.cpp.o
 
 task-cli.i: task-cli.cpp.i
@@ -143,6 +180,7 @@ task-cli.i: task-cli.cpp.i
 # target to preprocess a source file
 task-cli.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.i
 .PHONY : task-cli.cpp.i
 
 task-cli.s: task-cli.cpp.s
@@ -151,7 +189,32 @@ task-cli.s: task-cli.cpp.s
 # target to generate assembly for a file
 task-cli.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.s
 .PHONY : task-cli.cpp.s
+
+test_task-cli.o: test_task-cli.cpp.o
+.PHONY : test_task-cli.o
+
+# target to build an object file
+test_task-cli.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.o
+.PHONY : test_task-cli.cpp.o
+
+test_task-cli.i: test_task-cli.cpp.i
+.PHONY : test_task-cli.i
+
+# target to preprocess a source file
+test_task-cli.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.i
+.PHONY : test_task-cli.cpp.i
+
+test_task-cli.s: test_task-cli.cpp.s
+.PHONY : test_task-cli.s
+
+# target to generate assembly for a file
+test_task-cli.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.s
+.PHONY : test_task-cli.cpp.s
 
 # Help Target
 help:
@@ -161,10 +224,16 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... test"
 	@echo "... task-cli"
+	@echo "... task_lib"
+	@echo "... test_task-cli"
 	@echo "... task-cli.o"
 	@echo "... task-cli.i"
 	@echo "... task-cli.s"
+	@echo "... test_task-cli.o"
+	@echo "... test_task-cli.i"
+	@echo "... test_task-cli.s"
 .PHONY : help
 
 

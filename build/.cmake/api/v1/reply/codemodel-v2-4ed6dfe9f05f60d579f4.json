@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "task-cli",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -39,8 +43,22 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "task-cli::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-task-cli-Debug-13f2167dea2fc1f9c5d5.json",
+					"jsonFile" : "target-task-cli-Debug-4b8922ae53b1c3be9124.json",
 					"name" : "task-cli",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "task_lib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-task_lib-Debug-37bd7415f0fdeff98497.json",
+					"name" : "task_lib",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test_task-cli::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test_task-cli-Debug-78e4b1326c5c09815379.json",
+					"name" : "test_task-cli",
 					"projectIndex" : 0
 				}
 			]

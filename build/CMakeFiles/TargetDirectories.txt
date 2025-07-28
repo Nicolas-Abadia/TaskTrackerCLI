@@ -1,3 +1,6 @@
 /workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/task-cli.dir
+/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/task_lib.dir
+/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/test_task-cli.dir
+/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/test.dir
 /workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/edit_cache.dir
 /workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles/rebuild_cache.dir
