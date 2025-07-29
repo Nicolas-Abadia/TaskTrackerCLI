@@ -1,17 +1,22 @@
 [
 {
   "directory": "/workspaces/cpp_projects/TaskTrackerCLI/build",
-  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/task-cli.dir/task-cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp",
-  "file": "/workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp"
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/task-cli.dir/src/main.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/main.cpp",
+  "file": "/workspaces/cpp_projects/TaskTrackerCLI/src/main.cpp"
 },
 {
   "directory": "/workspaces/cpp_projects/TaskTrackerCLI/build",
-  "command": "/usr/bin/c++ -DTESTING_BUILD  -g -std=gnu++20 -o CMakeFiles/task_lib.dir/task-cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp",
-  "file": "/workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp"
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/task-cli.dir/src/cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/cli.cpp",
+  "file": "/workspaces/cpp_projects/TaskTrackerCLI/src/cli.cpp"
 },
 {
   "directory": "/workspaces/cpp_projects/TaskTrackerCLI/build",
-  "command": "/usr/bin/c++   -g -DGTEST_HAS_PTHREAD=1 -std=gnu++20 -o CMakeFiles/test_task-cli.dir/test_task-cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/test_task-cli.cpp",
-  "file": "/workspaces/cpp_projects/TaskTrackerCLI/test_task-cli.cpp"
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/task-cli.dir/src/json.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/json.cpp",
+  "file": "/workspaces/cpp_projects/TaskTrackerCLI/src/json.cpp"
+},
+{
+  "directory": "/workspaces/cpp_projects/TaskTrackerCLI/build",
+  "command": "/usr/bin/c++   -g -std=gnu++20 -o CMakeFiles/task-cli.dir/src/utils.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/utils.cpp",
+  "file": "/workspaces/cpp_projects/TaskTrackerCLI/src/utils.cpp"
 }
 ]

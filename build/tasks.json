@@ -1,0 +1,17 @@
+[
+    {
+        "id": 2,
+        "description": "lanchinho",
+        "status": "todo",
+        "createdAt": "2025-07-29 20:54:22",
+        "updatedAt": "2025-07-29 20:54:22"
+    }
+,
+    {
+        "id": 3,
+        "description": "desenhar",
+        "status": "todo",
+        "createdAt": "2025-07-29 20:56:14",
+        "updatedAt": "2025-07-29 20:56:14"
+    }
+]
