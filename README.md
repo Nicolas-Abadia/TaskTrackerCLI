@@ -91,12 +91,12 @@ A simple command-line task management application built in C++. This project was
 
 ```
 TaskTrackerCLI/
-├── task-cli.cpp           # Main application source code
-├── test_task-cli.cpp      # Unit tests
 ├── CMakeLists.txt         # Build configuration
 ├── README.md              # Project documentation
 ├── build/                 # Build artifacts (generated)
-└── *.json                 # Task data files (generated)
+├── src/                   # Source Code
+├── include                # Includes
+└── tasks.json             # Task data files (generated)
 ```
 
 ## 🤝 Contributing
