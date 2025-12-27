@@ -69,31 +69,79 @@ include CMakeFiles/task-cli.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/task-cli.dir/flags.make
 
-CMakeFiles/task-cli.dir/task-cli.cpp.o: CMakeFiles/task-cli.dir/flags.make
-CMakeFiles/task-cli.dir/task-cli.cpp.o: ../task-cli.cpp
-CMakeFiles/task-cli.dir/task-cli.cpp.o: CMakeFiles/task-cli.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task-cli.dir/task-cli.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task-cli.dir/task-cli.cpp.o -MF CMakeFiles/task-cli.dir/task-cli.cpp.o.d -o CMakeFiles/task-cli.dir/task-cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp
+CMakeFiles/task-cli.dir/src/main.cpp.o: CMakeFiles/task-cli.dir/flags.make
+CMakeFiles/task-cli.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/task-cli.dir/src/main.cpp.o: CMakeFiles/task-cli.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task-cli.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task-cli.dir/src/main.cpp.o -MF CMakeFiles/task-cli.dir/src/main.cpp.o.d -o CMakeFiles/task-cli.dir/src/main.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/main.cpp
 
-CMakeFiles/task-cli.dir/task-cli.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task-cli.dir/task-cli.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp > CMakeFiles/task-cli.dir/task-cli.cpp.i
+CMakeFiles/task-cli.dir/src/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task-cli.dir/src/main.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cpp_projects/TaskTrackerCLI/src/main.cpp > CMakeFiles/task-cli.dir/src/main.cpp.i
 
-CMakeFiles/task-cli.dir/task-cli.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task-cli.dir/task-cli.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cpp_projects/TaskTrackerCLI/task-cli.cpp -o CMakeFiles/task-cli.dir/task-cli.cpp.s
+CMakeFiles/task-cli.dir/src/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task-cli.dir/src/main.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cpp_projects/TaskTrackerCLI/src/main.cpp -o CMakeFiles/task-cli.dir/src/main.cpp.s
+
+CMakeFiles/task-cli.dir/src/cli.cpp.o: CMakeFiles/task-cli.dir/flags.make
+CMakeFiles/task-cli.dir/src/cli.cpp.o: ../src/cli.cpp
+CMakeFiles/task-cli.dir/src/cli.cpp.o: CMakeFiles/task-cli.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/task-cli.dir/src/cli.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task-cli.dir/src/cli.cpp.o -MF CMakeFiles/task-cli.dir/src/cli.cpp.o.d -o CMakeFiles/task-cli.dir/src/cli.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/cli.cpp
+
+CMakeFiles/task-cli.dir/src/cli.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task-cli.dir/src/cli.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cpp_projects/TaskTrackerCLI/src/cli.cpp > CMakeFiles/task-cli.dir/src/cli.cpp.i
+
+CMakeFiles/task-cli.dir/src/cli.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task-cli.dir/src/cli.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cpp_projects/TaskTrackerCLI/src/cli.cpp -o CMakeFiles/task-cli.dir/src/cli.cpp.s
+
+CMakeFiles/task-cli.dir/src/json.cpp.o: CMakeFiles/task-cli.dir/flags.make
+CMakeFiles/task-cli.dir/src/json.cpp.o: ../src/json.cpp
+CMakeFiles/task-cli.dir/src/json.cpp.o: CMakeFiles/task-cli.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/task-cli.dir/src/json.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task-cli.dir/src/json.cpp.o -MF CMakeFiles/task-cli.dir/src/json.cpp.o.d -o CMakeFiles/task-cli.dir/src/json.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/json.cpp
+
+CMakeFiles/task-cli.dir/src/json.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task-cli.dir/src/json.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cpp_projects/TaskTrackerCLI/src/json.cpp > CMakeFiles/task-cli.dir/src/json.cpp.i
+
+CMakeFiles/task-cli.dir/src/json.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task-cli.dir/src/json.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cpp_projects/TaskTrackerCLI/src/json.cpp -o CMakeFiles/task-cli.dir/src/json.cpp.s
+
+CMakeFiles/task-cli.dir/src/utils.cpp.o: CMakeFiles/task-cli.dir/flags.make
+CMakeFiles/task-cli.dir/src/utils.cpp.o: ../src/utils.cpp
+CMakeFiles/task-cli.dir/src/utils.cpp.o: CMakeFiles/task-cli.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/task-cli.dir/src/utils.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/task-cli.dir/src/utils.cpp.o -MF CMakeFiles/task-cli.dir/src/utils.cpp.o.d -o CMakeFiles/task-cli.dir/src/utils.cpp.o -c /workspaces/cpp_projects/TaskTrackerCLI/src/utils.cpp
+
+CMakeFiles/task-cli.dir/src/utils.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task-cli.dir/src/utils.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /workspaces/cpp_projects/TaskTrackerCLI/src/utils.cpp > CMakeFiles/task-cli.dir/src/utils.cpp.i
+
+CMakeFiles/task-cli.dir/src/utils.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task-cli.dir/src/utils.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /workspaces/cpp_projects/TaskTrackerCLI/src/utils.cpp -o CMakeFiles/task-cli.dir/src/utils.cpp.s
 
 # Object files for target task-cli
 task__cli_OBJECTS = \
-"CMakeFiles/task-cli.dir/task-cli.cpp.o"
+"CMakeFiles/task-cli.dir/src/main.cpp.o" \
+"CMakeFiles/task-cli.dir/src/cli.cpp.o" \
+"CMakeFiles/task-cli.dir/src/json.cpp.o" \
+"CMakeFiles/task-cli.dir/src/utils.cpp.o"
 
 # External object files for target task-cli
 task__cli_EXTERNAL_OBJECTS =
 
-task-cli: CMakeFiles/task-cli.dir/task-cli.cpp.o
+task-cli: CMakeFiles/task-cli.dir/src/main.cpp.o
+task-cli: CMakeFiles/task-cli.dir/src/cli.cpp.o
+task-cli: CMakeFiles/task-cli.dir/src/json.cpp.o
+task-cli: CMakeFiles/task-cli.dir/src/utils.cpp.o
 task-cli: CMakeFiles/task-cli.dir/build.make
 task-cli: CMakeFiles/task-cli.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable task-cli"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/workspaces/cpp_projects/TaskTrackerCLI/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable task-cli"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/task-cli.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

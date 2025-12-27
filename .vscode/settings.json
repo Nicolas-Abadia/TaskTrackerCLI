@@ -49,6 +49,15 @@
     "ratio": "cpp",
     "codecvt": "cpp",
     "iomanip": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "any": "cpp",
+    "map": "cpp",
+    "set": "cpp",
+    "optional": "cpp",
+    "semaphore": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp",
+    "cinttypes": "cpp",
+    "variant": "cpp"
   }
 }

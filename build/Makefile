@@ -65,16 +65,6 @@ CMAKE_BINARY_DIR = /workspaces/cpp_projects/TaskTrackerCLI/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-.PHONY : test/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -139,82 +129,101 @@ task-cli/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/build
 .PHONY : task-cli/fast
 
-#=============================================================================
-# Target rules for targets named task_lib
-
-# Build rule for target.
-task_lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 task_lib
-.PHONY : task_lib
-
-# fast build rule for target.
-task_lib/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/build
-.PHONY : task_lib/fast
-
-#=============================================================================
-# Target rules for targets named test_task-cli
-
-# Build rule for target.
-test_task-cli: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_task-cli
-.PHONY : test_task-cli
-
-# fast build rule for target.
-test_task-cli/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/build
-.PHONY : test_task-cli/fast
-
-task-cli.o: task-cli.cpp.o
-.PHONY : task-cli.o
+src/cli.o: src/cli.cpp.o
+.PHONY : src/cli.o
 
 # target to build an object file
-task-cli.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.o
-.PHONY : task-cli.cpp.o
+src/cli.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/cli.cpp.o
+.PHONY : src/cli.cpp.o
 
-task-cli.i: task-cli.cpp.i
-.PHONY : task-cli.i
+src/cli.i: src/cli.cpp.i
+.PHONY : src/cli.i
 
 # target to preprocess a source file
-task-cli.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.i
-.PHONY : task-cli.cpp.i
+src/cli.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/cli.cpp.i
+.PHONY : src/cli.cpp.i
 
-task-cli.s: task-cli.cpp.s
-.PHONY : task-cli.s
+src/cli.s: src/cli.cpp.s
+.PHONY : src/cli.s
 
 # target to generate assembly for a file
-task-cli.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/task-cli.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/task_lib.dir/build.make CMakeFiles/task_lib.dir/task-cli.cpp.s
-.PHONY : task-cli.cpp.s
+src/cli.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/cli.cpp.s
+.PHONY : src/cli.cpp.s
 
-test_task-cli.o: test_task-cli.cpp.o
-.PHONY : test_task-cli.o
+src/json.o: src/json.cpp.o
+.PHONY : src/json.o
 
 # target to build an object file
-test_task-cli.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.o
-.PHONY : test_task-cli.cpp.o
+src/json.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/json.cpp.o
+.PHONY : src/json.cpp.o
 
-test_task-cli.i: test_task-cli.cpp.i
-.PHONY : test_task-cli.i
+src/json.i: src/json.cpp.i
+.PHONY : src/json.i
 
 # target to preprocess a source file
-test_task-cli.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.i
-.PHONY : test_task-cli.cpp.i
+src/json.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/json.cpp.i
+.PHONY : src/json.cpp.i
 
-test_task-cli.s: test_task-cli.cpp.s
-.PHONY : test_task-cli.s
+src/json.s: src/json.cpp.s
+.PHONY : src/json.s
 
 # target to generate assembly for a file
-test_task-cli.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_task-cli.dir/build.make CMakeFiles/test_task-cli.dir/test_task-cli.cpp.s
-.PHONY : test_task-cli.cpp.s
+src/json.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/json.cpp.s
+.PHONY : src/json.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/utils.o: src/utils.cpp.o
+.PHONY : src/utils.o
+
+# target to build an object file
+src/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/utils.cpp.o
+.PHONY : src/utils.cpp.o
+
+src/utils.i: src/utils.cpp.i
+.PHONY : src/utils.i
+
+# target to preprocess a source file
+src/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/utils.cpp.i
+.PHONY : src/utils.cpp.i
+
+src/utils.s: src/utils.cpp.s
+.PHONY : src/utils.s
+
+# target to generate assembly for a file
+src/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/task-cli.dir/build.make CMakeFiles/task-cli.dir/src/utils.cpp.s
+.PHONY : src/utils.cpp.s
 
 # Help Target
 help:
@@ -224,16 +233,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... test"
 	@echo "... task-cli"
-	@echo "... task_lib"
-	@echo "... test_task-cli"
-	@echo "... task-cli.o"
-	@echo "... task-cli.i"
-	@echo "... task-cli.s"
-	@echo "... test_task-cli.o"
-	@echo "... test_task-cli.i"
-	@echo "... test_task-cli.s"
+	@echo "... src/cli.o"
+	@echo "... src/cli.i"
+	@echo "... src/cli.s"
+	@echo "... src/json.o"
+	@echo "... src/json.i"
+	@echo "... src/json.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
 .PHONY : help
 
 
